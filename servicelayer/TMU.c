@@ -95,19 +95,19 @@ EnmTMUError_t TMU_Stop_Timer(void (*ptrtofun)(void))
    {
       if(gstr_arrayoftasks[au8_counter].Ptrtotask==ptrtofun)
       {
-         if((gs_arraycount==1)||(gs_arraycount==BUFFER_SIZE))
+         if(au8_counter==BUFFER_SIZE-1)
          {
-            gstr_arrayoftasks[gs_arraycount-1].Ptrtotask=NULL;
-            gstr_arrayoftasks[gs_arraycount-1].delay_milistone=0;
-            gstr_arrayoftasks[gs_arraycount-1].delay=0;
-            gstr_arrayoftasks[gs_arraycount-1].perodicity=0;
+            gstr_arrayoftasks[au8_counter].Ptrtotask=NULL;
+            gstr_arrayoftasks[au8_counter].delay_milistone=0;
+            gstr_arrayoftasks[au8_counter].delay=0;
+            gstr_arrayoftasks[au8_counter].perodicity=0;
          }
          else
          {
-            gstr_arrayoftasks[au8_counter-1].Ptrtotask=gstr_arrayoftasks[BUFFER_SIZE-1].Ptrtotask;
-            gstr_arrayoftasks[au8_counter-1].delay_milistone=gstr_arrayoftasks[BUFFER_SIZE-1].delay_milistone;
-            gstr_arrayoftasks[au8_counter-1].delay=gstr_arrayoftasks[BUFFER_SIZE-1].delay;
-            gstr_arrayoftasks[au8_counter-1].perodicity=gstr_arrayoftasks[BUFFER_SIZE-1].perodicity;
+            gstr_arrayoftasks[au8_counter].Ptrtotask=gstr_arrayoftasks[BUFFER_SIZE-1].Ptrtotask;
+            gstr_arrayoftasks[au8_counter].delay_milistone=gstr_arrayoftasks[BUFFER_SIZE-1].delay_milistone;
+            gstr_arrayoftasks[au8_counter].delay=gstr_arrayoftasks[BUFFER_SIZE-1].delay;
+            gstr_arrayoftasks[au8_counter].perodicity=gstr_arrayoftasks[BUFFER_SIZE-1].perodicity;
             
             gstr_arrayoftasks[BUFFER_SIZE-1].Ptrtotask=NULL;
             gstr_arrayoftasks[BUFFER_SIZE-1].delay_milistone=0;

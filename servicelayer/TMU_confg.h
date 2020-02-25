@@ -9,7 +9,7 @@
 #ifndef TMU_CONFG_H_
 #define TMU_CONFG_H_
 
-#define   BUFFER_SIZE  10
+#define   BUFFER_SIZE  3
 #define   RESOLUTION   1
 #define   TMU_TIMER_ID TIMER_0
 

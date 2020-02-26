@@ -193,6 +193,9 @@
     <Folder Include="src\config\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="COMMON\Error_handling.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="MCAL\DIO.c">
       <SubType>compile</SubType>
     </Compile>

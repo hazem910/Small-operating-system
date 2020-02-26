@@ -7,7 +7,8 @@ TEST.d TEST.o: .././TEST.c .././servicelayer\TMU.h \
  .././servicelayer\..\MCAL\..\Common\registers.h \
  .././servicelayer\..\MCAL\..\MCAL\interrupt.h \
  .././servicelayer\..\MCAL\..\MCAL\..\Common\registers.h \
- .././servicelayer\..\MCAL\DIO.h .././MCAL\DIO.h
+ .././servicelayer\..\MCAL\DIO.h \
+ .././servicelayer\..\COMMON\error_handling.h .././MCAL\DIO.h
 
 .././servicelayer\TMU.h:
 
@@ -30,5 +31,7 @@ TEST.d TEST.o: .././TEST.c .././servicelayer\TMU.h \
 .././servicelayer\..\MCAL\..\MCAL\..\Common\registers.h:
 
 .././servicelayer\..\MCAL\DIO.h:
+
+.././servicelayer\..\COMMON\error_handling.h:
 
 .././MCAL\DIO.h:

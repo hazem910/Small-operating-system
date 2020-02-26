@@ -14,12 +14,15 @@
 #include "TMU_confg.h"
 #include "..\MCAL\Timer.h"
 #include "..\MCAL\DIO.h"
+#include "..\COMMON\error_handling.h"
 /********************************************************************/
 /**************************DEFINES***********************************/
 /*******************************************************************/
 #define ONESHOT 0
 #define PERIODIC 1
-#define EnmTMUError_t uint8_t
+typedef  sint8_t EnmTMUError_t;    
+#define initialized 1
+#define not_init   0
 
 /********************************************************************/
 /**************************EXTERN***********************************/

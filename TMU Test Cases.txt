@@ -1,0 +1,87 @@
+test case1:
+
+* Target Function: TMU_Init
+* Test Case: send NULL pointer to "TMU_Init"
+* Expected OUTPUT: FAILED
+* Real OUTPUT: FAILED
+************************************************************************************/
+
+test case2:
+
+* Target Function: TMU_Start_Timer
+* Test Case: module not_initialized to "TMU_Start_Timer"
+* Expected OUTPUT: FAILED
+* Real OUTPUT: FAILED
+************************************************************************************/
+
+test case3:
+
+* Target Function: TMU_Init
+* Test Case: multiple initialization to "TMU_Init"
+* Expected OUTPUT: FAILED
+* Real OUTPUT: FAILED
+************************************************************************************/
+
+test case4:
+
+* Target Function: TMU_Stop_Timer
+* Test Case: stop without start "TMU_Stop_Timer"
+* Expected OUTPUT: FAILED
+* Real OUTPUT: FAILED
+************************************************************************************/
+
+test case5:
+
+* Target Function: TMU_Start_Timer
+* Test Case: invalid parameter (repetition) "TMU_Start_Timer"
+* Expected OUTPUT: FAILED
+* Real OUTPUT: FAILED
+************************************************************************************/
+
+test case6:
+
+* Target Function: TMU_Start_Timer
+* Test Case: invalid parameter (called function is null) "TMU_Start_Timer"
+* Expected OUTPUT: FAILED
+* Real OUTPUT: FAILED
+************************************************************************************/
+
+test case7:
+
+* Target Function: TMU_Start_Timer
+* Test Case: multiple stop "TMU_Stop_Timer"
+* Expected OUTPUT: FAILED
+* Real OUTPUT: FAILED
+************************************************************************************/
+
+test case8:
+
+* Target Function: TMU_Start_Timer
+* Test Case: multiple start to the same called function "TMU_Start_Timer"
+* Expected OUTPUT: PASSED
+* Real OUTPUT: PASSED
+************************************************************************************/
+
+test case9:
+
+* Target Function: TMU_Start_Timer
+* Test Case: valid parameters"TMU_Start_Timer"
+* Expected OUTPUT: PASSED
+* Real OUTPUT: PASSED
+************************************************************************************/
+
+test case10:
+
+* Target Function: TMU_Start_Timer
+* Test Case: full buffer (buffer is 3)"TMU_Start_Timer"
+* Expected OUTPUT: FAILED
+* Real OUTPUT: FAILED
+************************************************************************************/
+
+test case11:
+
+* Target Function: TMU_Init
+* Test Case: invalid parameters in the passed structure "TMU_Init"
+* Expected OUTPUT: FAILED
+* Real OUTPUT: FAILED
+************************************************************************************/

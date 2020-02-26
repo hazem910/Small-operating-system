@@ -56,31 +56,17 @@ ERROR_STATUS Timer_Init(Timer_cfg_s* info)
 				/* Normal mode */
 
 
-				if(info->Timer_Int_MODE == TIMER_INTERRUPT_MODE)
+
 
 				break;
 			case (TIMER_1):
 
-				if(info->Timer_Int_MODE == TIMER_POLLING_MODE)
-				{  
 
-				}
-				else
-				{     
-
-				}
 				break;
 			case (TIMER_2):
 				/* Normal mode */
 
-				if(info->Timer_Int_MODE == TIMER_POLLING_MODE)
-				{     
 
-				}
-				else
-				{     
-
-				}
 				break;
 			default:
 				ERROR=E_NOK;
@@ -396,7 +382,7 @@ ERROR_STATUS Timer_GetValue(uint8_t Timer_CH_NO,volatile uint16_t* Data)
 {ERROR_STATUS ERROR=E_OK;
 	if(gsau8_initState[Timer_CH_NO] == INITIALIZED)
 	{
-		*Data = 0;
+
 		switch (Timer_CH_NO)
 		{
 		case (TIMER_0):

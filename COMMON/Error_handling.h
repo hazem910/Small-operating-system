@@ -9,6 +9,5 @@
 #define  TMU_NOT_PERODICORONESHOT  -6
 #define  TMU_FUN_NULL_POINTER      -5
 #define  TMU_MULTIPLE_STOP         -4
-#define  TM
  
 #endif

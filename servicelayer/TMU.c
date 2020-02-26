@@ -256,15 +256,21 @@ EnmTMUError_t TMU_DeInit(void)
 {
    EnmTMUError_t u8_status=E_OK;
    uint8_t u8_counter=0;
-   for(u8_counter=0;u8_counter<BUFFER_SIZE;u8_counter++)
+   if(gu8_multiple_init==initialized)
    {
-       gstr_arrayoftasks[u8_counter].Ptrtotask=NULL;
-       gstr_arrayoftasks[u8_counter].delay_milistone=0;
-       gstr_arrayoftasks[u8_counter].delay=0;
-       gstr_arrayoftasks[u8_counter].perodicity=0;
+         for(u8_counter=0;u8_counter<BUFFER_SIZE;u8_counter++)
+         {
+             gstr_arrayoftasks[u8_counter].Ptrtotask=NULL;
+             gstr_arrayoftasks[u8_counter].delay_milistone=0;
+             gstr_arrayoftasks[u8_counter].delay=0;
+             gstr_arrayoftasks[u8_counter].perodicity=0;
       
+         }
+         Timer_Stop(TMU_TIMER_ID);
    }
-   Timer_Stop(TMU_TIMER_ID);
-   
+   else
+   {
+      u8_status=TMU_MODULE_NOT_INIT;
+   }   
    return u8_status;
 }

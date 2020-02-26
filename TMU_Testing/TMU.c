@@ -1,11 +1,3 @@
-
-/*
- * TMU.c
- *
- * Created: 2/24/2020 3:58:24 PM
- *  Author: Hazem 
- */ 
-
 #include "TMU.h"
 
 static uint8_t g_res;
@@ -33,13 +25,13 @@ EnmTMUError_t TMU_Init (const TMU_ConfigType * ConfigPtr )
       if(gu8_multiple_init==initialized)
       {
          status=TMU_MULTIPLE_INIT;
-      }         
+      }
        else
-       {     gu8_multiple_init=initialized; 
+       {     gu8_multiple_init=initialized;
              g_res=ConfigPtr->RES;
             Timer_cfg_s instance={0};
             switch(ConfigPtr->TIMER_ID)
-            {    
+            {
               case TIMER_0:
                      instance.Timer_CH=TIMER_0;
                      instance.Timer_Mode=TIMER_MODE;
@@ -65,7 +57,7 @@ EnmTMUError_t TMU_Init (const TMU_ConfigType * ConfigPtr )
                       status =E_NOK;
                       break;
             }
-          }                                                   
+          }
       }
    return status;
 }
@@ -88,13 +80,13 @@ EnmTMUError_t TMU_Start_Timer(uint16_t time,ptrtotask_CBK_FUNC ptrtofun,uint8_t 
       status=TMU_MODULE_NOT_INIT;
    }
 else
-{   
+{
          if(gs_arraycount<BUFFER_SIZE)
          {
             if((periodicORoneshot!=PERIODIC)&&(periodicORoneshot!=ONESHOT))
             {
                status=TMU_NOT_PERODICORONESHOT;
-            }               
+            }
             else
             {
               if(ptrtofun==NULL)
@@ -110,18 +102,18 @@ else
   
                     if(gs_arraycount==0)
                     {
-                       Timer_Start(TMU_TIMER_ID,6);  
+                       Timer_Start(TMU_TIMER_ID,6);
                     }
 
                   gs_arraycount++;
-              }           
-            }                    
-         } 
+              }
+            }
+         }
          else
          {
-            status=E_NOK;
+            status=TMU_BUFFER_IS_FULL;
          }
-}                  
+}
 return status;
 }
 /**
@@ -132,7 +124,7 @@ return status;
 EnmTMUError_t TMU_Stop_Timer(void (*ptrtofun)(void))
 {
    EnmTMUError_t status=E_OK;
-   uint8_t au8_counter=0; 
+   uint8_t au8_counter=0;
    uint8_t Flag=0;
    if(gs_arraycount==0)
    {
@@ -142,7 +134,7 @@ EnmTMUError_t TMU_Stop_Timer(void (*ptrtofun)(void))
   {
          for(au8_counter=0;au8_counter<BUFFER_SIZE;au8_counter++)
          {
-      
+
             if(gstr_arrayoftasks[au8_counter].Ptrtotask==ptrtofun)
             {   Flag=1;
                if(au8_counter==BUFFER_SIZE-1)
@@ -158,7 +150,7 @@ EnmTMUError_t TMU_Stop_Timer(void (*ptrtofun)(void))
                   gstr_arrayoftasks[au8_counter].delay_milistone=gstr_arrayoftasks[BUFFER_SIZE-1].delay_milistone;
                   gstr_arrayoftasks[au8_counter].delay=gstr_arrayoftasks[BUFFER_SIZE-1].delay;
                   gstr_arrayoftasks[au8_counter].perodicity=gstr_arrayoftasks[BUFFER_SIZE-1].perodicity;
-            
+
                   gstr_arrayoftasks[BUFFER_SIZE-1].Ptrtotask=NULL;
                   gstr_arrayoftasks[BUFFER_SIZE-1].delay_milistone=0;
                   gstr_arrayoftasks[BUFFER_SIZE-1].delay=0;
@@ -166,7 +158,7 @@ EnmTMUError_t TMU_Stop_Timer(void (*ptrtofun)(void))
                }
                gs_arraycount--;
             }
-      
+
          }
          if(gs_arraycount==0)
          {
@@ -175,8 +167,8 @@ EnmTMUError_t TMU_Stop_Timer(void (*ptrtofun)(void))
         if(Flag==0)
         {
          status=TMU_MULTIPLE_STOP;
-        }   
- }       
+        }
+ }
    return status;
 }
 
@@ -271,6 +263,7 @@ EnmTMUError_t TMU_DeInit(void)
    else
    {
       u8_status=TMU_MODULE_NOT_INIT;
-   }   
+   }
+   gu8_multiple_init = not_init;
    return u8_status;
 }

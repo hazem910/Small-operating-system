@@ -10,7 +10,9 @@ void func_call2(void);
 void func_call3(void);
 
 extern TMU_ConfigType instans;
+
 extern Task_BlockType gstr_arrayoftasks[BUFFER_SIZE];
+
 
 int main(void)
 {
@@ -36,7 +38,7 @@ int main(void)
    /*test case2 (BUFFER_SIZE is 3)*/
 
    TMU_Init(&instans);
-   TMU_Start_Timer(1000,func_call,PERIODIC);
+   TMU_Start_Timer(1000,func_call,ONESHOT);
    TMU_Start_Timer(500,func_call1,PERIODIC);
    TMU_Start_Timer(300,func_call2,PERIODIC);
    TMU_Stop_Timer(func_call2);

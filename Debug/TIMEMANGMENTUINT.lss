@@ -957,8 +957,8 @@ void func_call3(void)
  460:	08 95       	ret
 
 00000462 <main>:
-extern Task_BlockType gstr_arrayoftasks[BUFFER_SIZE];
 
+extern Task_BlockType gstr_arrayoftasks[BUFFER_SIZE];
 
 
 int main(void)
@@ -992,8 +992,8 @@ int main(void)
  47e:	80 e6       	ldi	r24, 0x60	; 96
  480:	90 e0       	ldi	r25, 0x00	; 0
  482:	d8 de       	rcall	.-592    	; 0x234 <TMU_Init>
-   TMU_Start_Timer(1000,func_call,PERIODIC);
- 484:	41 e0       	ldi	r20, 0x01	; 1
+   TMU_Start_Timer(1000,func_call,ONESHOT);
+ 484:	40 e0       	ldi	r20, 0x00	; 0
  486:	61 e2       	ldi	r22, 0x21	; 33
  488:	72 e0       	ldi	r23, 0x02	; 2
  48a:	88 ee       	ldi	r24, 0xE8	; 232

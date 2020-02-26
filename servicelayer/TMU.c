@@ -68,6 +68,10 @@ Return:*/
 
 EnmTMUError_t TMU_Start_Timer(uint16_t time,ptrtotask_CBK_FUNC ptrtofun,uint8_t periodicORoneshot)
 {   EnmTMUError_t status=E_OK;
+   if(gs_arraycount<BUFFER_SIZE)
+   {
+      
+   
   gstr_arrayoftasks[gs_arraycount].delay=time;
   gstr_arrayoftasks[gs_arraycount].Ptrtotask=ptrtofun;
   gstr_arrayoftasks[gs_arraycount].perodicity=periodicORoneshot;
@@ -79,7 +83,11 @@ EnmTMUError_t TMU_Start_Timer(uint16_t time,ptrtotask_CBK_FUNC ptrtofun,uint8_t 
   }
 
 gs_arraycount++;
-
+   }
+   else
+   {
+      status=E_NOK;
+   }
 return status;
 }
 /**
@@ -90,11 +98,12 @@ return status;
 EnmTMUError_t TMU_Stop_Timer(void (*ptrtofun)(void))
 {
    EnmTMUError_t status=E_OK;
-   uint8_t au8_counter=0;
+   uint8_t au8_counter=0; 
+   uint8_t Flag=0;
    for(au8_counter=0;au8_counter<BUFFER_SIZE;au8_counter++)
    {
       if(gstr_arrayoftasks[au8_counter].Ptrtotask==ptrtofun)
-      {
+      {   Flag=1;
          if(au8_counter==BUFFER_SIZE-1)
          {
             gstr_arrayoftasks[au8_counter].Ptrtotask=NULL;
@@ -122,6 +131,10 @@ EnmTMUError_t TMU_Stop_Timer(void (*ptrtofun)(void))
    {
       Timer_Stop(TMU_TIMER_ID);
    }
+  if(Flag==0)
+  {
+   status=E_NOK;
+  }   
    return status;
 }
 

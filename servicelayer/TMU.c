@@ -134,41 +134,49 @@ EnmTMUError_t TMU_Stop_Timer(void (*ptrtofun)(void))
    EnmTMUError_t status=E_OK;
    uint8_t au8_counter=0; 
    uint8_t Flag=0;
-   for(au8_counter=0;au8_counter<BUFFER_SIZE;au8_counter++)
-   {
-      if(gstr_arrayoftasks[au8_counter].Ptrtotask==ptrtofun)
-      {   Flag=1;
-         if(au8_counter==BUFFER_SIZE-1)
-         {
-            gstr_arrayoftasks[au8_counter].Ptrtotask=NULL;
-            gstr_arrayoftasks[au8_counter].delay_milistone=0;
-            gstr_arrayoftasks[au8_counter].delay=0;
-            gstr_arrayoftasks[au8_counter].perodicity=0;
-         }
-         else
-         {
-            gstr_arrayoftasks[au8_counter].Ptrtotask=gstr_arrayoftasks[BUFFER_SIZE-1].Ptrtotask;
-            gstr_arrayoftasks[au8_counter].delay_milistone=gstr_arrayoftasks[BUFFER_SIZE-1].delay_milistone;
-            gstr_arrayoftasks[au8_counter].delay=gstr_arrayoftasks[BUFFER_SIZE-1].delay;
-            gstr_arrayoftasks[au8_counter].perodicity=gstr_arrayoftasks[BUFFER_SIZE-1].perodicity;
-            
-            gstr_arrayoftasks[BUFFER_SIZE-1].Ptrtotask=NULL;
-            gstr_arrayoftasks[BUFFER_SIZE-1].delay_milistone=0;
-            gstr_arrayoftasks[BUFFER_SIZE-1].delay=0;
-            gstr_arrayoftasks[BUFFER_SIZE-1].perodicity=0;
-         }
-         gs_arraycount--;
-      }
-      
-   }
    if(gs_arraycount==0)
    {
-      Timer_Stop(TMU_TIMER_ID);
+      status=TMU_BUFFER_IS_EMPTY;
    }
-  if(Flag==0)
+   else
   {
-   status=TMU_BUFFER_IS_EMPTY;
-  }   
+         for(au8_counter=0;au8_counter<BUFFER_SIZE;au8_counter++)
+         {
+      
+            if(gstr_arrayoftasks[au8_counter].Ptrtotask==ptrtofun)
+            {   Flag=1;
+               if(au8_counter==BUFFER_SIZE-1)
+               {
+                  gstr_arrayoftasks[au8_counter].Ptrtotask=NULL;
+                  gstr_arrayoftasks[au8_counter].delay_milistone=0;
+                  gstr_arrayoftasks[au8_counter].delay=0;
+                  gstr_arrayoftasks[au8_counter].perodicity=0;
+               }
+               else
+               {
+                  gstr_arrayoftasks[au8_counter].Ptrtotask=gstr_arrayoftasks[BUFFER_SIZE-1].Ptrtotask;
+                  gstr_arrayoftasks[au8_counter].delay_milistone=gstr_arrayoftasks[BUFFER_SIZE-1].delay_milistone;
+                  gstr_arrayoftasks[au8_counter].delay=gstr_arrayoftasks[BUFFER_SIZE-1].delay;
+                  gstr_arrayoftasks[au8_counter].perodicity=gstr_arrayoftasks[BUFFER_SIZE-1].perodicity;
+            
+                  gstr_arrayoftasks[BUFFER_SIZE-1].Ptrtotask=NULL;
+                  gstr_arrayoftasks[BUFFER_SIZE-1].delay_milistone=0;
+                  gstr_arrayoftasks[BUFFER_SIZE-1].delay=0;
+                  gstr_arrayoftasks[BUFFER_SIZE-1].perodicity=0;
+               }
+               gs_arraycount--;
+            }
+      
+         }
+         if(gs_arraycount==0)
+         {
+            Timer_Stop(TMU_TIMER_ID);
+         }
+        if(Flag==0)
+        {
+         status=TMU_MULTIPLE_STOP;
+        }   
+ }       
    return status;
 }
 

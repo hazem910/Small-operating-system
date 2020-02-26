@@ -8,7 +8,7 @@ servicelayer/TMU_postconfg.d servicelayer/TMU_postconfg.o: \
  ../servicelayer/..\MCAL\..\Common\registers.h \
  ../servicelayer/..\MCAL\..\MCAL\interrupt.h \
  ../servicelayer/..\MCAL\..\MCAL\..\Common\registers.h \
- ../servicelayer/..\MCAL\DIO.h
+ ../servicelayer/..\MCAL\DIO.h ../servicelayer/..\COMMON\error_handling.h
 
 ../servicelayer/TMU.h:
 
@@ -31,3 +31,5 @@ servicelayer/TMU_postconfg.d servicelayer/TMU_postconfg.o: \
 ../servicelayer/..\MCAL\..\MCAL\..\Common\registers.h:
 
 ../servicelayer/..\MCAL\DIO.h:
+
+../servicelayer/..\COMMON\error_handling.h:

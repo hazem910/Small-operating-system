@@ -16,9 +16,8 @@
 
 
 extern TMU_ConfigType instans;
+extern TMU_ConfigType instans2;
 
-
-extern Task_BlockType gstr_arrayoftasks[BUFFER_SIZE];
 
 void func_call(void)
 {
@@ -52,7 +51,7 @@ int main(void) {
 	uint8_t u8_status8=0;
 	uint8_t u8_status9=0;
 	uint8_t u8_status10=0;
-
+	uint8_t u8_status11=0;
 
 
 
@@ -196,7 +195,7 @@ int main(void) {
 	************************************************************************************/
 	u8_status8 |=TMU_Init(&instans);
 	u8_status8 |=TMU_Start_Timer(1000,func_call,PERIODIC);
-	u8_status8 |=TMU_Start_Timer(1000,func_call,PERIODIC);
+	u8_status8 |=TMU_Start_Timer(500,func_call,PERIODIC);
 	u8_status8 |= TMU_DeInit();
 	if(u8_status8==E_OK)
 	{
@@ -241,7 +240,7 @@ int main(void) {
 	u8_status10 |=TMU_Start_Timer(500,func_call2,PERIODIC);
 	u8_status10 |=TMU_Start_Timer(500,func_call3,PERIODIC);
 	u8_status10 |=TMU_Start_Timer(900,func_call4,PERIODIC);
-	//u8_status9 |= TMU_DeInit();
+	u8_status10 |= TMU_DeInit();
 	if(u8_status10==E_OK)
 	{
 		printf("full buffer (test case 10): PASSED\n");
@@ -249,6 +248,24 @@ int main(void) {
 	else
 	{
 		printf("full buffer (test case 10): FAILED\n");
+	}
+
+
+
+	/************************************************************************************
+	* Target Function: TMU_Init
+	* Test Case: invalid parameters in the passed structure "TMU_Init"
+	* Expected OUTPUT: FAILED
+	* Real OUTPUT: FAILED
+	************************************************************************************/
+	u8_status11 |=TMU_Init(&instans2);
+	if(u8_status11==E_OK)
+	{
+		printf("invalid parameters in the passed structure (test case 11): PASSED\n");
+	}
+	else
+	{
+		printf("invalid parameters in the passed structure (test case 11): FAILED\n");
 	}
 
 	return 0;

@@ -22,20 +22,20 @@
 
 
 #define		TIMER_MODE					      0
-#define		COUNTER_RISING_MODE			      1
-#define		COUNTER_FALLING_MODE			  2
+#define		COUNTER_RISING_MODE			   1
+#define		COUNTER_FALLING_MODE				2
 
-#define		TIMER_POLLING_MODE				  0
-#define		TIMER_INTERRUPT_MODE			  1
+#define		TIMER_POLLING_MODE				0
+#define		TIMER_INTERRUPT_MODE			   1
 
-#define		TIMER_NO_CLOCK					  0
-#define		TIMER_PRESCALER_NO				  1
-#define		TIMER_PRESCALER_8				  2
-#define		TIMER_PRESCALER_32				  3
-#define		TIMER_PRESCALER_64				  4
-#define		TIMER_PRESCALER_128				  5
-#define		TIMER_PRESCALER_256				  6
-#define		TIMER_PRESCALER_1024			  7
+#define		TIMER_NO_CLOCK					   0
+#define		TIMER_PRESCALER_NO				1
+#define		TIMER_PRESCALER_8				   2
+#define		TIMER_PRESCALER_32				3
+#define		TIMER_PRESCALER_64				4
+#define		TIMER_PRESCALER_128				5
+#define		TIMER_PRESCALER_256				6
+#define		TIMER_PRESCALER_1024			   7
 
 extern volatile uint32_t gu_timer_count1;
 extern uint32_t gu_timer_count2;

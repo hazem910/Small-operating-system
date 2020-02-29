@@ -12,9 +12,8 @@
 
 
 #define NONE_VALID_REPETITION_STATUS 3
-#define ONE_SEC 1000
-#define HALF_SEC 500
-#define INITIAL_VALUE 0
+
+
 
 extern TMU_ConfigType instans;
 extern TMU_ConfigType instans2;
@@ -42,17 +41,17 @@ void func_call4(void)
 
 int main(void) {
 	TMU_ConfigType *null_ptr=NULL;
-	uint8_t u8_status1=INITIAL_VALUE;
-	uint8_t u8_status2=INITIAL_VALUE;
-	uint8_t u8_status3=INITIAL_VALUE;
-	uint8_t u8_status4=INITIAL_VALUE;
-	uint8_t u8_status5=INITIAL_VALUE;
-	uint8_t u8_status6=INITIAL_VALUE;
-	uint8_t u8_status7=INITIAL_VALUE;
-	uint8_t u8_status8=INITIAL_VALUE;
-	uint8_t u8_status9=INITIAL_VALUE;
-	uint8_t u8_status10=INITIAL_VALUE;
-	uint8_t u8_status11=INITIAL_VALUE;
+	uint8_t u8_status1=0;
+	uint8_t u8_status2=0;
+	uint8_t u8_status3=0;
+	uint8_t u8_status4=0;
+	uint8_t u8_status5=0;
+	uint8_t u8_status6=0;
+	uint8_t u8_status7=0;
+	uint8_t u8_status8=0;
+	uint8_t u8_status9=0;
+	uint8_t u8_status10=0;
+	uint8_t u8_status11=0;
 
 
 
@@ -81,7 +80,7 @@ int main(void) {
 	* Expected OUTPUT: FAILED
 	* Real OUTPUT: FAILED
 	************************************************************************************/
-	u8_status2 |=TMU_Start_Timer(ONE_SEC,func_call,PERIODIC);
+	u8_status2 |=TMU_Start_Timer(1000,func_call,PERIODIC);
     u8_status2 |= TMU_DeInit();
 	if(u8_status2==E_OK)
 	{
@@ -137,7 +136,7 @@ int main(void) {
 	* Expected OUTPUT: FAILED
 	* Real OUTPUT: FAILED
 	************************************************************************************/
-	u8_status5 |=TMU_Start_Timer(ONE_SEC,func_call,NONE_VALID_REPETITION_STATUS);
+	u8_status5 |=TMU_Start_Timer(1000,func_call,NONE_VALID_REPETITION_STATUS);
 	if(u8_status5==E_OK)
 	{
 		printf("invalid parameter (test case 5): PASSED\n");
@@ -155,7 +154,7 @@ int main(void) {
 	* Expected OUTPUT: FAILED
 	* Real OUTPUT: FAILED
 	************************************************************************************/
-	u8_status6 |=TMU_Start_Timer(ONE_SEC,NULL,PERIODIC);
+	u8_status6 |=TMU_Start_Timer(1000,NULL,PERIODIC);
 	if(u8_status6==E_OK)
 	{
 		printf("invalid parameter (test case 6): PASSED\n");
@@ -195,8 +194,8 @@ int main(void) {
 	* Real OUTPUT: PASSED
 	************************************************************************************/
 	u8_status8 |=TMU_Init(&instans);
-	u8_status8 |=TMU_Start_Timer(ONE_SEC,func_call,PERIODIC);
-	u8_status8 |=TMU_Start_Timer(HALF_SEC,func_call,PERIODIC);
+	u8_status8 |=TMU_Start_Timer(1000,func_call,PERIODIC);
+	u8_status8 |=TMU_Start_Timer(500,func_call,PERIODIC);
 	u8_status8 |= TMU_DeInit();
 	if(u8_status8==E_OK)
 	{
@@ -217,7 +216,7 @@ int main(void) {
 	* Real OUTPUT: PASSED
 	************************************************************************************/
 	u8_status9 |=TMU_Init(&instans);
-	u8_status9 |=TMU_Start_Timer(ONE_SEC,func_call,PERIODIC);
+	u8_status9 |=TMU_Start_Timer(1000,func_call,PERIODIC);
 	u8_status9 |= TMU_DeInit();
 	if(u8_status9==E_OK)
 	{
@@ -237,10 +236,10 @@ int main(void) {
 	* Real OUTPUT: FAILED
 	************************************************************************************/
 	u8_status10 |=TMU_Init(&instans);
-	u8_status10 |=TMU_Start_Timer(ONE_SEC,func_call,PERIODIC);
-	u8_status10 |=TMU_Start_Timer(HALF_SEC,func_call2,PERIODIC);
-	u8_status10 |=TMU_Start_Timer(HALF_SEC,func_call3,PERIODIC);
-	u8_status10 |=TMU_Start_Timer(ONE_SEC,func_call4,PERIODIC);
+	u8_status10 |=TMU_Start_Timer(1000,func_call,PERIODIC);
+	u8_status10 |=TMU_Start_Timer(500,func_call2,PERIODIC);
+	u8_status10 |=TMU_Start_Timer(500,func_call3,PERIODIC);
+	u8_status10 |=TMU_Start_Timer(900,func_call4,PERIODIC);
 	u8_status10 |= TMU_DeInit();
 	if(u8_status10==E_OK)
 	{
